@@ -1,0 +1,126 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-dialog/paper-dialog.html">
+<link rel="import" href="../paper-icon-button/paper-icon-button.html">
+
+<!--
+`atom-modal-dialog`
+
+
+@demo demo/index.html 
+-->
+
+<dom-module id="atom-modal-dialog">
+  <template>
+    <style>
+       :host {
+        display: block;
+      }
+
+       :host #header {
+        margin-top: 0;
+        display: flex;
+        justify-content: space-between;
+        padding-right: 0.7em;
+      }
+
+       :host #header paper-icon-button {
+        height: 35px;
+        width: 35px;
+        margin-top: 0.7em;
+      }
+
+       :host paper-dialog {
+        min-width: 300px;
+        @apply(--atom-dialog);
+      }
+
+       :host #modal #buttons {
+        display: flex;
+        justify-content: flex-end;
+      }
+
+       :host #modal paper-button {
+        --paper-button: {
+          vertical-align: text-bottom;
+          color: #5caadb;
+          font-weight: 600;
+        }
+      }
+
+       :host #overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background-color: #444;
+        opacity: 0.5;
+        z-index: 100;
+      }
+    </style>
+    <template is="dom-if" if="[[_isModalOpen(modalOpen)]]">
+      <div id="overlay" on-tap="close">
+      </div>
+    </template>
+    <paper-dialog id="modal">
+      <div id="header">
+        <h3>[[title]]</h3>
+        <paper-icon-button id="close" icon="clear" on-tap="close"></paper-icon-button>
+      </div>
+      <div id="body">
+        <content></content>
+      </div>
+      <div id="footer">
+        <template is="dom-repeat" items="buttons">
+          <paper-button>[[item.title]]</paper-button>
+        </template>
+      </div>
+    </paper-dialog>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'atom-modal-dialog',
+
+      properties: {
+        title: {
+          type: String,
+          value: 'Modal Title'
+        },
+
+        buttons: {
+          type: Array,
+          value: []
+        },
+
+        modalOpen: {
+          type: Boolean,
+          value: false,
+          reflectToAttribute: true
+        },
+      },
+
+      attached: function () {
+        if (this.modalOpen) {
+          this._openModal();
+        }
+      },
+
+      open: function () {
+        this.modalOpen = true;
+        this.$.modal.open();
+      },
+
+      close: function () {
+        this.modalOpen = false;
+        this.$.modal.close();
+      },
+
+      _isModalOpen: function (open) {
+        return open;
+      }
+
+    });
+  </script>
+</dom-module>
