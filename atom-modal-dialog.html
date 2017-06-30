@@ -34,7 +34,7 @@
         @apply(--atom-dialog);
       }
 
-       :host #modal #buttons {
+       :host #modal #footer {
         display: flex;
         justify-content: flex-end;
       }
@@ -71,7 +71,7 @@
         <content></content>
       </div>
       <div id="footer">
-        <template is="dom-repeat" items="buttons">
+        <template is="dom-repeat" items="[[buttons]]">
           <paper-button>[[item.title]]</paper-button>
         </template>
       </div>
