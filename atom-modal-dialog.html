@@ -64,7 +64,7 @@
     </template>
     <paper-dialog id="modal">
       <div id="header">
-        <h3>[[title]]</h3>
+        <h3>[[modalTitle]]</h3>
         <paper-icon-button id="close" icon="clear" on-tap="close"></paper-icon-button>
       </div>
       <div id="body">
@@ -84,7 +84,7 @@
       is: 'atom-modal-dialog',
 
       properties: {
-        title: {
+        modalTitle: {
           type: String,
           value: 'Modal Title'
         },
