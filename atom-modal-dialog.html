@@ -71,8 +71,9 @@
         <content></content>
       </div>
       <div id="footer">
+        <paper-button id="cancel" on-tap="close">[[closeLabel]]</paper-button>
         <template is="dom-repeat" items="[[buttons]]">
-          <paper-button>[[item.title]]</paper-button>
+          <paper-button data-action$="[[item.action]]" on-tap="_triggerAction">[[item.title]]</paper-button>
         </template>
       </div>
     </paper-dialog>
@@ -99,6 +100,11 @@
           value: false,
           reflectToAttribute: true
         },
+
+        closeLabel: {
+          type: String,
+          value: 'Cancel'
+        }
       },
 
       attached: function () {
@@ -119,6 +125,10 @@
 
       _isModalOpen: function (open) {
         return open;
+      },
+
+      _triggerAction: function (e) {
+        this.fire(e.currentTarget.getAttribute('data-action'));
       }
 
     });
