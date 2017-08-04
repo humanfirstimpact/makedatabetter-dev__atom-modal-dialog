@@ -1,6 +1,5 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../paper-dialog/paper-dialog.html">
-<link rel="import" href="../paper-icon-button/paper-icon-button.html">
 
 <!--
 `atom-modal-dialog`
@@ -21,12 +20,6 @@
         display: flex;
         justify-content: space-between;
         padding-right: 0.7em;
-      }
-
-       :host #header paper-icon-button {
-        height: 35px;
-        width: 35px;
-        margin-top: 0.7em;
       }
 
        :host paper-dialog {
@@ -65,7 +58,6 @@
     <paper-dialog id="modal">
       <div id="header">
         <h3>[[modalTitle]]</h3>
-        <paper-icon-button id="close" icon="clear" on-tap="close"></paper-icon-button>
       </div>
       <div id="body">
         <content></content>
