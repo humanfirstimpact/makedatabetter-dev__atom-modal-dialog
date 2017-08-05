@@ -16,10 +16,14 @@
       }
 
        :host #header {
-        margin-top: 0;
         display: flex;
         justify-content: space-between;
-        padding-right: 0.7em;
+      }
+
+       :host #header h3 {
+        margin-top: 0;
+        margin-bottom: 0;
+        font-size: 20px;
       }
 
        :host paper-dialog {
@@ -29,7 +33,9 @@
 
        :host #modal #footer {
         display: flex;
-        justify-content: flex-end;
+        justify-content: space-between;
+        margin: 24px 8px 8px 8px;
+        padding: 0;
       }
 
        :host #modal paper-button {
@@ -63,10 +69,17 @@
         <content></content>
       </div>
       <div id="footer">
-        <paper-button id="cancel" on-tap="close">[[closeLabel]]</paper-button>
-        <template is="dom-repeat" items="[[buttons]]">
-          <paper-button data-action$="[[item.action]]" on-tap="_triggerAction">[[item.title]]</paper-button>
-        </template>
+        <div>
+          <template is="dom-if" if="[[secondaryActionAllowed]]">
+            <paper-button data-action="secondary" on-tap="_triggerAction">[[secondaryActionLabel]]</paper-button>
+          </template>
+        </div>
+        <div>
+          <paper-button id="cancel" on-tap="close">[[closeLabel]]</paper-button>
+          <template is="dom-if" if="[[primaryActionAllowed]]">
+            <paper-button data-action="primary" on-tap="_triggerAction">[[primaryActionLabel]]</paper-button>
+          </template>
+        </div>
       </div>
     </paper-dialog>
   </template>
@@ -79,23 +92,38 @@
       properties: {
         modalTitle: {
           type: String,
-          value: 'Modal Title'
+          value: 'Modal title'
         },
 
-        buttons: {
-          type: Array,
-          value: []
+        primaryActionAllowed: {
+          type: Boolean,
+          value: false
+        },
+
+        primaryActionLabel: {
+          type: String,
+          value: 'Primary action'
+        },
+
+        secondaryActionAllowed: {
+          type: Boolean,
+          value: false
+        },
+
+        secondaryActionLabel: {
+          type: String,
+          value: 'Secondary action'
+        },
+
+        closeLabel: {
+          type: String,
+          value: 'Cancel'
         },
 
         modalOpen: {
           type: Boolean,
           value: false,
           reflectToAttribute: true
-        },
-
-        closeLabel: {
-          type: String,
-          value: 'Cancel'
         }
       },
 
