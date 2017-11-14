@@ -35,7 +35,6 @@
 
        :host #modal #footer {
         display: flex;
-        justify-content: space-between;
         margin: 24px 8px 8px 8px;
         padding: 0;
       }
@@ -77,10 +76,10 @@
           </template>
         </div>
         <div>
-          <paper-button id="cancel" on-tap="close">[[closeLabel]]</paper-button>
           <template is="dom-if" if="[[primaryActionAllowed]]">
             <paper-button data-action="primary" on-tap="_triggerAction">[[primaryActionLabel]]</paper-button>
           </template>
+          <paper-button id="cancel" on-tap="close">[[closeLabel]]</paper-button>
         </div>
       </div>
     </paper-dialog>
