@@ -41,18 +41,19 @@
       }
 
        :host #modal paper-button {
-        --paper-button: {
-          vertical-align: text-bottom;
-          color: #5caadb;
-          font-weight: 600;
-        }
+          padding: 10px;
+          margin: 10px;
+          --paper-button: {
+            vertical-align: text-bottom;
+            color: #5caadb;
+            font-weight: 600;
+          }
 
-        --paper-button-flat-keyboard-focus:{
-          padding-top: 3px;
-          padding-bottom: 3px;
-          border: 1px solid;
+          --paper-button-flat-keyboard-focus:{
+            border: 1px solid;
+            padding: 9px !important;
+          }
         }
-      }
 
        :host #overlay {
         position: fixed;
